@@ -1,0 +1,11 @@
+/* Estilo para los campos con error */
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+/* Estilo para los mensajes de error */
+.invalid-feedback {
+  font-size: 0.875em;
+  color: #dc3545;  /* Rojo para los mensajes de error */
+}

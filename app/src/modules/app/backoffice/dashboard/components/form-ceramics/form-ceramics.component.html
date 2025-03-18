@@ -1,0 +1,126 @@
+<div class="bg-white shadow-lg rounded-lg p-6 w-full h-[90vh] overflow-y-auto border-4 border-turquesaMaya">
+    <h2 class="text-3xl font-bold text-azulProfundo text-center mb-4">Agregar Instrumento Maya</h2>
+    <form #form="ngForm" (ngSubmit)="saveCeramics()">
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Título*</label>
+        <input  required type="text" placeholder="Ej. K1208" [(ngModel)]="ceramic.ce_title" name="title" class="form-control w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" #title="ngModel" [ngClass]="{'is-invalid': title.invalid && title.touched}">
+        <div *ngIf="title.invalid && title.touched" class="invalid-feedback">
+          El nombre es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Descripción*</label>
+        <textarea required placeholder="Descripción del instrumento..." [(ngModel)]="ceramic.ce_description"
+                  class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" name="description" #description="ngModel" [ngClass]="{'is-invalid': description.invalid && description.touched}"></textarea>
+        <div *ngIf="description.invalid && description.touched" class="invalid-feedback">
+          La descripción es obligatoria.
+        </div>
+       </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Subir Imagen*</label>
+        
+        
+        <div class="w-full border border-turquesaMaya rounded-lg px-2 py-2 flex items-center bg-white bg-opacity-80 justify-between">
+         
+           
+          <span *ngIf="!fileName" class="text-gray-600 ellipsis">Ningún archivo seleccionado</span>
+          <span *ngIf="fileName" class="text-gray-600 ellipsis" [appTooltip]="fileName">{{ fileName }}</span>
+          
+          <label for="imageUpload" 
+                 class="cursor-pointer bg-turquesaMaya text-white px-2 py-2 rounded-lg shadow-lg hover:bg-azulProfundo transition inline-block">
+            Seleccionar
+          </label>
+          <input required type="file" accept="image/*" id="imageUpload" name="image" class="hidden" (change)="onFileSelected($event)">
+        </div>
+        
+      
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Ubicación</label>
+        <input type="text" placeholder="Ej. México" [(ngModel)]="ceramic.ce_location" name="location"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Elaboración</label>
+        <input type="text" placeholder="Ej. 800 a.c" [(ngModel)]="ceramic.ce_creation_date" name="creation"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Tipología de vaso*</label>
+        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" [(ngModel)]="ceramic.ce_typology" name="typology">
+          <option *ngFor="let typology of typologies" [value]="typology.ty_id">{{ typology.ty_name }}</option>
+        </select>
+      </div>
+      <div class="flex w-full">
+        <div class="mb-4 mr-2">
+          <label class="block text-jade font-medium mb-1">Altura</label>
+          <input type="number" min="0" placeholder="Ej. 20.5" [(ngModel)]="ceramic.ce_measures.height" name="height"
+                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+        </div>
+
+        <div class="mb-4 mr-2">
+          <label class="block text-jade font-medium mb-1">Diametro</label>
+          <input type="number" min="0" placeholder="Ej. 11.5" [(ngModel)]="ceramic.ce_measures.diameter" name="diameter"
+                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-jade font-medium mb-1">Circumferencia</label>
+          <input type="number" min="0" placeholder="Ej. 1" [(ngModel)]="ceramic.ce_measures.circumference" name="circumference"
+                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Escuela</label>
+        <input type="text" placeholder="Ej. Princeton" [(ngModel)]="ceramic.ce_school" name="school"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+      </div>
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Propiedad de</label>
+        <input type="text" placeholder="Ej. Princeton Art Museum Princeton NJ PUAM# y1975-17" [(ngModel)]="ceramic.ce_property" name="property"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+      </div>
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Elementos iconográficos*</label>
+        <input type="text" placeholder="Ej. Diosa O" [(ngModel)]="iconographic_element" name="iconographic" #iconographic="ngModel"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_iconographic_elements')" [ngClass]="{'is-invalid': !ceramic.ce_iconographic_elements.length && iconographic.touched}">
+        <div *ngIf="!ceramic.ce_iconographic_elements.length && iconographic.touched" class="invalid-feedback">
+          Añade almenos un elemento iconográfico.
+        </div>
+        <div *ngIf="ceramic.ce_iconographic_elements.length" class="flex w-full flex-wrap">
+          <div *ngFor="let ico of ceramic.ce_iconographic_elements" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl text-turquesaMaya h-6 mr-1 shadow flex items-center justify-center px-2">
+            <span>{{ ico }}</span>
+            <mat-icon (click)="deleteTag(ico, 'ce_iconographic_elements')" class="text-base cursor-pointer">close</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Instrumentos musicales*</label>
+        <input type="text" placeholder="Ej. Caracola" [(ngModel)]="musical_instrument" name="musical_ins" #musical_ins="ngModel"
+               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_musical_instruments')" [ngClass]="{'is-invalid': !ceramic.ce_musical_instruments.length && musical_ins.touched}">
+      <div *ngIf="!ceramic.ce_musical_instruments.length && musical_ins.touched" class="invalid-feedback">
+        Añade almenos un instrumento musical.
+      </div>
+      <div *ngIf="ceramic.ce_musical_instruments.length" class="flex w-full flex-wrap">
+          <div *ngFor="let mi of ceramic.ce_musical_instruments" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl text-turquesaMaya h-6 mr-1 shadow flex items-center justify-center px-2">
+            <span>{{ mi }}</span>
+            <mat-icon (click)="deleteTag(mi, 'ce_musical_instruments')" class="text-base cursor-pointer">close</mat-icon>
+          </div>
+      </div>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button type="submit" class="bg-turquesaMaya text-white mx-3 px-2 py-2 rounded-lg shadow-lg hover:bg-azulProfundo transition disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="form.invalid || !ceramic.ce_iconographic_elements.length || !ceramic.ce_musical_instruments.length || !selectedFile || ceramic.ce_typology == -1">
+          Guardar
+        </button>
+        <button type="button" class="bg-gray-400 text-white px-2 py-2 rounded-lg shadow-lg hover:bg-gray-600 transition" (click)="clearFields()">
+          Limpiar
+        </button>
+      </div>
+    </form>
+  </div>

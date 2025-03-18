@@ -1,0 +1,37 @@
+
+
+    <div class="bg-grisAzulado min-h-screen flex flex-col md:flex-row p-6 gap-6 bg-cover bg-center bg-fixed" 
+    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Bonampak_mural._Room_1._Musicians_and_dancers.jpg'); background-blend-mode: overlay; position: relative;">
+      
+      <te-form-ceramics class="md:w-4/12" [ceramic]="ceramic" [typologies]="typologies" (getCeramicData)="getCeramicData($event)"></te-form-ceramics>
+
+      
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full md:w-8/12 h-[90vh] overflow-y-auto border-4 border-turquesaMaya">
+        <h2 class="text-3xl font-bold text-azulProfundo text-center mb-4">Instrumentos Registrados</h2>
+  
+        <div class="space-y-4">
+          <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow">
+            <div class="flex items-center space-x-4">
+              <img src="https://www.mayavase.com/still/1208still.jpg" alt="Instrumento" class="w-16 h-16 rounded-lg">
+              <div>
+                <p class="text-lg font-semibold text-jade">K1208</p>
+                <p class="text-sm text-gray-500">Tambor</p>
+              </div>
+            </div>
+            <div class="flex space-x-2">
+              <button class="bg-turquesaMaya text-white p-2 rounded-lg hover:bg-azulCielo transition ">
+                <span class="material-icons">edit</span>
+              </button>
+              <button class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-700 transition">
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div style="position: absolute; width: 200px; height: 200px; background-color: aqua;">
+
+      </div> -->
+      <te-generic-snackbar [genericData]="snackbarData"></te-generic-snackbar>
+    </div>
+  

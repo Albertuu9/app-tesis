@@ -1,4 +1,5 @@
 export class Ceramic {
+    ce_id?: number = 0;
     ce_title: string = '';
     ce_description: string = '';
     ce_img_schedule: string = '';
@@ -6,9 +7,9 @@ export class Ceramic {
     ce_creation_date: string = '';
     ce_typology: number = -1;
     ce_measures: Object = {
-        height: null,
-        diameter: null,
-        circumference: null
+        height: 0,
+        diameter: 0,
+        circumference: 0
     }
     ce_school: string = '';
     ce_images: string = '';

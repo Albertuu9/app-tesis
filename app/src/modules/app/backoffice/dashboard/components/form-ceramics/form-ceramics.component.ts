@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Ceramic } from '../../models/dashboard.model';
 
 @Component({
@@ -19,7 +19,13 @@ export class FormCeramicsComponent {
     constructor() {
         this.iconographic_element = '';
         this.musical_instrument = '';
-        this.fileName = '';
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if(changes && changes['ceramic'] && changes['ceramic'].currentValue) {
+            this.selectedFile = changes['ceramic'].currentValue.ce_img_schedule ? changes['ceramic'].currentValue.ce_img_schedule : '';
+            this.fileName = this.selectedFile ? this.selectedFile.match(/[^/]+$/)[0] : '';
+        }
     }
 
     // upload file functions
@@ -46,6 +52,14 @@ export class FormCeramicsComponent {
         }
     }
 
+    checkFormIsValid(data: Ceramic) {
+        let invalid = false;
+        if(!data.ce_iconographic_elements.length || !data.ce_musical_instruments.length || !this.fileName || data.ce_typology == -1 || !data.ce_title || !data.ce_description) {
+            invalid = true;
+        }
+        return invalid;
+    }
+
     deleteTag(tag: string, key: string) {
         const index = this.ceramic[key].indexOf(tag);
         if (index !== -1) {
@@ -60,6 +74,7 @@ export class FormCeramicsComponent {
     }
 
     saveCeramics() {
+        console.log('entrraaaaa');
         const objectToSave = {
             ceramic: this.ceramic,
             selectedFile: this.selectedFile

@@ -11,11 +11,17 @@ export class BackofficeService {
   saveCeramic(data: any, file: any) {
     const formData = new FormData();
     formData.append('image', file); // Solo el archivo
+
     for (const key in data) {
-      if (key !== 'ce_img_schedule') { // Evitar enviar ce_img_schedule como File
-        formData.append(key, data[key]);
+      if (key !== 'ce_img_schedule') {
+        if (data[key] !== null && typeof data[key] === "object" && !Array.isArray(data[key])) {
+          formData.append(key, JSON.stringify(data[key])); // Convertir objetos a JSON
+        } else {
+          formData.append(key, data[key]);
+        }
       }
     }
+    
     const params = {
       url: '/api/ceramics/save',
       body: formData

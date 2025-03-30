@@ -3,6 +3,9 @@
 @tailwind utilities;
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cpointer {
+  cursor: pointer;
+}
 .ellipsis {
   width: 200px;
   white-space: nowrap;

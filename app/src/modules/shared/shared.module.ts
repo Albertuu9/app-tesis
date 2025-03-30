@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './services/database.service';
 import { TooltipDirective } from 'src/app/tooltip.directive';
 import { GenericSnackbarComponent } from './components/snackbar/generic-snackbar.component';
+import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
 
 @NgModule({
   declarations: [
     TooltipDirective,
-    GenericSnackbarComponent
+    GenericSnackbarComponent,
+    GenericModalComponent
   ],
   imports: [CommonModule],
   exports: [
@@ -19,7 +21,8 @@ import { GenericSnackbarComponent } from './components/snackbar/generic-snackbar
     MatIconModule,
     HttpClientModule,
     TooltipDirective,
-    GenericSnackbarComponent
+    GenericSnackbarComponent,
+    GenericModalComponent
   ],
   providers: [DatabaseService]
 })

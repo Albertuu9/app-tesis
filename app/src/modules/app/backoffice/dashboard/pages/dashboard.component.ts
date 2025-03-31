@@ -38,13 +38,19 @@ export class DashboardComponent {
     this.initData();
   }
 
-  ngAfterViewInit() {
-    this.deleteModalInstance = new Modal(this.modalElement.nativeElement);
-  }
+  // ngAfterViewInit() {
+  //   this.deleteModalInstance = new Modal(this.modalElement.nativeElement);
+  // }
 
   initData() {
     this.getCeramics();
     this.getTypologies();
+    this.snackbarData = {
+      action: 'Eliminar',
+      color: '#198754',
+      text: 'Datos guardados correctamente.',
+      show: true
+    }
   }
 
   // listado de tipologías
@@ -69,9 +75,7 @@ export class DashboardComponent {
   }
 
   editCeramic(id: Number) {
-    console.log('id', id);
     this.ceramic = this.ceramics.filter((ceramic: any) => { return ceramic.ce_id === id })[0];
-    console.log('ceramic', this.ceramic);
   }
 
   addCeramic(event: any) {
@@ -82,12 +86,7 @@ export class DashboardComponent {
 
   saveCeramics() {
     console.log('ceramic', this.ceramic);
-    this.snackbarData = {
-      action: 'Eliminar',
-      color: '#198754',
-      text: 'Datos guardados correctamente.',
-      show: true
-    }
+    
     this.backofficeService.saveCeramic(this.ceramic, this.selectedFile).subscribe((response: any) => {
       setTimeout(() => {
         this.snackbarData.show = false;

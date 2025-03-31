@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Ceramic } from '../../models/dashboard.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'te-form-ceramics',
@@ -73,13 +74,18 @@ export class FormCeramicsComponent {
         this.fileName = '';
     }
 
-    saveCeramics() {
-        console.log('entrraaaaa');
+    saveCeramics(form: NgForm) {
         const objectToSave = {
             ceramic: this.ceramic,
             selectedFile: this.selectedFile
         }
         this.getCeramicData.emit(objectToSave);
+        if(!this.ceramic.ce_id) {
+            this.ceramic = new Ceramic();
+            this.selectedFile = null;
+            this.fileName = '';
+            form.resetForm();
+        }
     }
 
 }

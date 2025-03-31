@@ -1,6 +1,6 @@
 <div class="bg-white shadow-lg rounded-lg p-6 w-full h-[90vh] overflow-y-auto border-4 border-turquesaMaya">
     <span class="text-xl font-bold text-azulProfundo flex justify-center text-center mb-4">{{ ceramic && ceramic.ce_title ? 'Editar cerámica' :  'Añadir cerámica'}}</span>
-    <form #form="ngForm" (ngSubmit)="saveCeramics()" (keydown.enter)="$event.preventDefault()">
+    <form #form="ngForm" (ngSubmit)="saveCeramics(form)" (keydown.enter)="$event.preventDefault()">
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Título*</label>
         <input  required type="text" placeholder="Ej. K1208" [(ngModel)]="ceramic.ce_title" name="title" class="form-control w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" #title="ngModel" [ngClass]="{'is-invalid': title.invalid && title.touched}">

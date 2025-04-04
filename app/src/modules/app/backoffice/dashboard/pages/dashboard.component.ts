@@ -17,7 +17,7 @@ export class DashboardComponent {
   ceramics: Ceramic[];
   deleteModalInstance!: Modal;
   @ViewChild('deleteModal', { static: false }) modalElement!: ElementRef;
-  deleteModalData: { title: string; message: string; };
+  deleteModalData: { title: string; btnType: string, message: string; action: string };
 
   constructor(private backofficeService: BackofficeService) {
     this.ceramic = new Ceramic();
@@ -28,6 +28,8 @@ export class DashboardComponent {
       color: ''
     }
     this.deleteModalData = {
+      action: 'Eliminar',
+      btnType: 'btn-danger',
       title: 'Confirmar Eliminación',
       message: '¿Estás seguro de que deseas eliminar este elemento? Esta acción no se puede deshacer.'
     }
@@ -38,19 +40,15 @@ export class DashboardComponent {
     this.initData();
   }
 
-  // ngAfterViewInit() {
-  //   this.deleteModalInstance = new Modal(this.modalElement.nativeElement);
-  // }
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.deleteModalInstance = new Modal(this.modalElement.nativeElement);
+    },1000);
+  }
 
   initData() {
     this.getCeramics();
     this.getTypologies();
-    this.snackbarData = {
-      action: 'Eliminar',
-      color: '#198754',
-      text: 'Datos guardados correctamente.',
-      show: true
-    }
   }
 
   // listado de tipologías
@@ -86,11 +84,20 @@ export class DashboardComponent {
 
   saveCeramics() {
     console.log('ceramic', this.ceramic);
-    
+    this.snackbarData = {
+      color: '#198754',
+      text: 'Datos guardados correctamente.',
+      show: true
+    }
     this.backofficeService.saveCeramic(this.ceramic, this.selectedFile).subscribe((response: any) => {
       setTimeout(() => {
         this.snackbarData.show = false;
       }, 2000);
+
+      if(!this.ceramic.ce_id) {
+        this.ceramic = new Ceramic();
+      }
+      
       this.getCeramics();
     });
   }
@@ -100,5 +107,23 @@ export class DashboardComponent {
     this.ceramic = event.ceramic;
     this.selectedFile = event.selectedFile;
     this.saveCeramics();
+  }
+
+  getDeleteData(data: any) {
+    if(data) {
+      this.snackbarData = {
+        color: '#198754',
+        text: 'Cerámica eliminada correctamente.',
+        show: true
+      }
+      this.backofficeService.deleteCeramic(this.ceramic.ce_id).subscribe((response: any) => {
+        setTimeout(() => {
+          this.snackbarData.show = false;
+        }, 2000);
+        this.ceramic = new Ceramic();
+        this.getCeramics();
+      });
+    }
+    this.deleteModalInstance.hide();
   }
 }

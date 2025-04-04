@@ -7,8 +7,8 @@
 
       <te-list-ceramics class="md:w-8/12" *ngIf="ceramics?.length" [ceramics]="ceramics" (deleteCeramic)="deleteCeramic($event)" (editCeramic)="editCeramic($event)" (addCeramic)="addCeramic($event)"></te-list-ceramics>
 
-      <div class="modal fade" id="deleteModal">
-        <te-generic-modal [data]="deleteModalData"></te-generic-modal>
+      <div class="modal fade" id="deleteModal" #deleteModal>
+        <te-generic-modal [data]="deleteModalData" (sendData)="getDeleteData($event)"></te-generic-modal>
       </div>
       <te-generic-snackbar [genericData]="snackbarData"></te-generic-snackbar>
     </div>

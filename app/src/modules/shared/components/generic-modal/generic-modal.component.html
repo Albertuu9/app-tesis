@@ -1,15 +1,17 @@
 <div class="modal-dialog">
     <div class="modal-content">
-    <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="deleteModalLabel">{{ data.title }}</h5>
-        <button type="button" class="btn-close" (click)="cancel()"></button>
+    <div class="modal-header bg-danger text-white flex justify-between items-center">
+        <div>
+            <span class="text-xl" id="deleteModalLabel">{{ data.title }}</span>
+        </div>
+        <span class="material-icons mr-1 cpointer text-white" (click)="cancel()">close</span>
     </div>
     <div class="modal-body">
         {{ data.message }}
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="confirm()">{{ data.action }}</button>
+        <button type="button" class="btn" [ngClass]="data.btnType" (click)="confirm()">{{ data.action }}</button>
     </div>
     </div>
 </div>

@@ -30,6 +30,16 @@ export class BackofficeService {
     return this.databaseService.wsHttpRequest(params);
   }
 
+  deleteCeramic(id: number) {
+    
+    const params = {
+      url: '/api/ceramics/delete',
+      body: {ce_id: id}
+    }
+
+    return this.databaseService.wsHttpRequest(params);
+  }
+
   getTypologies() {
     const params = {
         url: '/api/typologies/get'

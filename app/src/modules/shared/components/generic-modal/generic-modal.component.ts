@@ -8,17 +8,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class GenericModalComponent {
 
     @Input() data: any;
+    @Output() sendData = new EventEmitter<any>();
 
     constructor() {
         
     }
 
     confirm() {
-
+      this.sendData.emit(true);
     }
 
     cancel() {
-        
+      this.sendData.emit(false);
     }
 
 }

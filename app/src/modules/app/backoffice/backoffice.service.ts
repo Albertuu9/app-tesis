@@ -40,14 +40,6 @@ export class BackofficeService {
     return this.databaseService.wsHttpRequest(params);
   }
 
-  getTypologies() {
-    const params = {
-        url: '/api/typologies/get'
-    }
-  
-    return this.databaseService.wsHttpRequest(params);
-  }
-
   getCeramics() {
     const params = {
         url: '/api/ceramics/get'

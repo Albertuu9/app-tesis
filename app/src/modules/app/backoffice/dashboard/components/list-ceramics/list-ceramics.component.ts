@@ -18,7 +18,6 @@ export class ListCeramicsComponent {
     }
 
     ngOnInit() {
-        console.log('ceramics', this.ceramics);
     }
 
     goToEdition(id: Number) {

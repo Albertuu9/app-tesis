@@ -39,9 +39,27 @@
       </div>
 
       <div class="mb-4">
-        <label class="block text-jade font-medium mb-1">Ubicación</label>
-        <input type="text" placeholder="Ej. México" [(ngModel)]="ceramic.ce_location" name="location"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+        <label class="block text-jade font-medium mb-1">Procedencia</label>
+        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onOriginChange($event)" [(ngModel)]="ceramic.ce_origin.id" name="origin">
+          <option *ngFor="let origin of origins" [value]="origin.id">{{ origin.text }}</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-jade font-medium mb-1">Técnica</label>
+        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onTechniqueChange($event)" [(ngModel)]="ceramic.ce_technique.id" name="technique">
+          <option *ngFor="let technique of techniques" [value]="technique.id">{{ technique.text }}</option>
+        </select>
+      </div>
+
+      <div class="mb-4" *ngIf="ceramic.ce_technique.id == 7">
+        <label class="block text-jade font-medium mb-1">Tipo de pintado</label>
+        <div class="form-check" *ngFor="let painted of painted_techniques">
+          <input class="form-check-input" type="radio" name="painted_technic" [id]="painted.id" [value]="painted.id" [checked]="ceramic.ce_painted.id == painted.id">
+          <label class="form-check-label">
+            {{ painted.text }}
+          </label>
+        </div>
       </div>
 
       <div class="mb-4">
@@ -51,9 +69,9 @@
       </div>
 
       <div class="mb-4">
-        <label class="block text-jade font-medium mb-1">Tipología de vaso*</label>
-        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" [(ngModel)]="ceramic.ce_typology" name="typology">
-          <option *ngFor="let typology of typologies" [value]="typology.ty_id">{{ typology.ty_name }}</option>
+        <label class="block text-jade font-medium mb-1">Materiales*</label>
+        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onMaterialChange($event)" [(ngModel)]="ceramic.ce_material.id" name="material">
+          <option *ngFor="let material of materials" [value]="material.id">{{ material.text }}</option>
         </select>
       </div>
       <div class="flex w-full">
@@ -77,12 +95,12 @@
       </div>
       
       <div class="mb-4">
-        <label class="block text-jade font-medium mb-1">Escuela</label>
-        <input type="text" placeholder="Ej. Princeton" [(ngModel)]="ceramic.ce_school" name="school"
+        <label class="block text-jade font-medium mb-1">Estilo</label>
+        <input type="text" placeholder="Ej. Princeton" [(ngModel)]="ceramic.ce_style" name="style"
                class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
       </div>
       <div class="mb-4">
-        <label class="block text-jade font-medium mb-1">Propiedad de</label>
+        <label class="block text-jade font-medium mb-1">Localización</label>
         <input type="text" placeholder="Ej. Princeton Art Museum Princeton NJ PUAM# y1975-17" [(ngModel)]="ceramic.ce_property" name="property"
                class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
       </div>
@@ -118,7 +136,7 @@
         <button type="submit" class="bg-turquesaMaya text-white mx-3 px-2 py-2 rounded-lg shadow-lg hover:bg-azulProfundo transition disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="checkFormIsValid(ceramic)">
           Guardar
         </button>
-        <button type="button" class="bg-gray-400 text-white px-2 py-2 rounded-lg shadow-lg hover:bg-gray-600 transition" (click)="clearFields()">
+        <button type="button" class="bg-gray-400 text-white px-2 py-2 rounded-lg shadow-lg hover:bg-gray-600 transition" (click)="clearFields(form)">
           Limpiar
         </button>
       </div>

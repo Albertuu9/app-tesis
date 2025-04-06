@@ -3,7 +3,7 @@
     <div class="bg-grisAzulado min-h-screen flex flex-col md:flex-row p-6 gap-6 bg-cover bg-center bg-fixed" 
     style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Bonampak_mural._Room_1._Musicians_and_dancers.jpg'); background-blend-mode: overlay; position: relative;">
       
-      <te-form-ceramics class="md:w-4/12" [ceramic]="ceramic" [typologies]="typologies" (getCeramicData)="getCeramicData($event)"></te-form-ceramics>
+      <te-form-ceramics class="md:w-4/12" [ceramic]="ceramic" (getCeramicData)="getCeramicData($event)"></te-form-ceramics>
 
       <te-list-ceramics class="md:w-8/12" *ngIf="ceramics?.length" [ceramics]="ceramics" (deleteCeramic)="deleteCeramic($event)" (editCeramic)="editCeramic($event)" (addCeramic)="addCeramic($event)"></te-list-ceramics>
 

@@ -11,7 +11,6 @@ import { Modal } from 'bootstrap';
 export class DashboardComponent {
 
   ceramic: any;
-  typologies: any;
   selectedFile: any;
   snackbarData: any;
   ceramics: Ceramic[];
@@ -21,7 +20,6 @@ export class DashboardComponent {
 
   constructor(private backofficeService: BackofficeService) {
     this.ceramic = new Ceramic();
-    this.typologies = [];
     this.selectedFile = null;
     this.snackbarData = {
       text: '',
@@ -48,15 +46,6 @@ export class DashboardComponent {
 
   initData() {
     this.getCeramics();
-    this.getTypologies();
-  }
-
-  // listado de tipologías
-  getTypologies() {
-    this.backofficeService.getTypologies().subscribe((response: any) => {
-      this.typologies = response;
-      this.typologies.unshift({ty_id: -1, ty_name: 'Selecciona una tipología'});
-    });
   }
 
   getCeramics() {

@@ -1,0 +1,31 @@
+<div class="flex items-center ceramic-wrapper" *ngFor="let ceramic of ceramics">
+    <div [style.background-image]="'url(' + ceramic.ce_img_schedule + ')'" class="img-wrapper w-2/12"></div>
+    <div class="all-data-wrapper w-8/12">
+        <div class="top-wrapper w-full">
+            <div class="first-data-wrapper w-2/12">
+                <b class="primary-color">{{ ceramic.ce_title }}</b>
+                <div class="secondary-data mt-1"> 
+                    <span class="material-icons mr-1">category</span>
+                    <small>{{ ceramic.ce_material.text }}</small>
+                </div>
+            </div>
+            <div class="second-data-wrapper w-10/12">
+                <span  [appTooltip]="ceramic.ce_description">{{ getCeramicDescription(ceramic) }}</span>
+            </div>
+        </div>
+        <div class="tags-wrapper">
+            <div *ngIf="ceramic.ce_musical_instruments.length" class="flex w-full flex-wrap">
+                <div *ngFor="let mi of ceramic.ce_musical_instruments" class="bg-gray-100 text-center w-auto w-2/12 rounded-xl text-sm h-6 mr-2 shadow flex items-center justify-center px-2 primary-color">
+                    <span>{{ mi }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions-wrapper w-2/12" *ngIf="type == 'edition'">
+        <i class="material-icons mr-2 cpointer primary-color" (click)="goToEdition(ceramic.ce_id)">edit</i>
+        <i class="material-icons mr-2 cpointer error-color" (click)="goToDelete(ceramic.ce_id)">delete</i>
+    </div>
+    <div class="actions-wrapper w-2/12" *ngIf="type != 'edition'">
+        <button class="action-btn">Ver detalles</button>
+    </div>
+</div>

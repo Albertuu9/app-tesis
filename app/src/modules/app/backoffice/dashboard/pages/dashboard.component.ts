@@ -1,7 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { BackofficeService } from '../../backoffice.service';
-import { Ceramic } from '../models/dashboard.model';
 import { Modal } from 'bootstrap';
+import { Ceramic } from 'src/modules/shared/models/ceramic.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,8 +15,9 @@ export class DashboardComponent {
   snackbarData: any;
   ceramics: Ceramic[];
   deleteModalInstance!: Modal;
-  @ViewChild('deleteModal', { static: false }) modalElement!: ElementRef;
   deleteModalData: { title: string; btnType: string, message: string; action: string };
+  @ViewChild('deleteModal', { static: false }) modalElement!: ElementRef;
+  @Output() addCeramicData = new EventEmitter<any>();
 
   constructor(private backofficeService: BackofficeService) {
     this.ceramic = new Ceramic();
@@ -54,6 +55,10 @@ export class DashboardComponent {
         this.ceramics = response.data;
       }
     });
+  }
+
+  goToAddCeramic() {
+    this.addCeramicData.emit(true);
   }
 
   deleteCeramic(id: Number) {

@@ -23,7 +23,7 @@ export class BackofficeService {
     }
     
     const params = {
-      url: '/api/ceramics/save',
+      url: '/ceramics/save',
       body: formData
     }
 
@@ -33,7 +33,7 @@ export class BackofficeService {
   deleteCeramic(id: number) {
     
     const params = {
-      url: '/api/ceramics/delete',
+      url: '/ceramics/delete',
       body: {ce_id: id}
     }
 
@@ -42,7 +42,7 @@ export class BackofficeService {
 
   getCeramics() {
     const params = {
-        url: '/api/ceramics/get'
+        url: '/ceramics/get'
     }
   
     return this.databaseService.wsHttpRequest(params);

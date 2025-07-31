@@ -1,0 +1,11 @@
+<div class="filters-wrapper">
+    <div class="title-input">
+        <!-- <select class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onOriginChange($event)" [(ngModel)]="ceramic.ce_origin.id" name="origin">
+            <option *ngFor="let origin of origins" [value]="origin.id">{{ origin.text }}</option>
+        </select> -->
+    </div>
+    <div class="title-input">
+        <input type="text" placeholder="Buscar..." [(ngModel)]="title" name="title" class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+        <i class="material-icons float-icon">search</i>
+    </div>
+</div>

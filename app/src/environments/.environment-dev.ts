@@ -1,5 +1,7 @@
 export const environment = {
     // production: false,
+    // dev
     apiUrl: 'http://localhost:7777',
-    // imagesUri: 'https://beta.smartshopls.com/assets/'
+    // prod
+    // apiUrl: 'https://ceramicsbysteph.es/api'
 };

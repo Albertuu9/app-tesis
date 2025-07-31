@@ -1,0 +1,37 @@
+.header-main-wrapper {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 90%;
+    .header-wrapper {
+        align-items: center;
+        background-color: #ffffff;
+        display: flex;
+        height: 40px;
+        justify-content: space-between;
+        width: 100%;
+        .custom-title {
+            width: 20%;
+        }
+        .filters-wrapper {
+            justify-content: flex-end;
+            width: 80%;
+        }
+    }
+}
+
+// portátil
+@media only screen and (max-width: 1380px) {
+    .header-main-wrapper {
+        width: 100%;
+    }
+}
+
+// tablets
+@media only screen and (max-width: 900px) {
+    .header-main-wrapper {
+        width: 100%;
+    }
+    .viewMode {
+        display: none;
+    }
+}

@@ -1,0 +1,9 @@
+<div class="flex justify-center bg-grisAzulado min-h-screen flex-col bg-cover bg-center bg-fixed" 
+style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Bonampak_mural._Room_1._Musicians_and_dancers.jpg'); background-blend-mode: overlay; position: relative;">
+    <te-header (sendViewMode)="setViewMode($event)"></te-header>
+    <div class="bg-white shadow-lg rounded-lg overflow-y-auto border-4 border-turquesaMaya content-wrapper">
+        <te-list-ceramics-generic *ngIf="viewMode == 'list' && ceramics?.length" [ceramics]="ceramics" [type]="'list'"></te-list-ceramics-generic>
+        <te-grid-ceramics-generic *ngIf="viewMode == 'grid' && ceramics?.length" class="flex flex-wrap justify-center mb-3" [ceramics]="ceramics"></te-grid-ceramics-generic>
+        <te-spinner appShowHide #spinner="appShowHide"></te-spinner>
+    </div>
+</div>

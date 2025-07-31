@@ -1,0 +1,9 @@
+<div class="bg-white shadow-lg rounded-lg p-6 overflow-y-auto border-4 mb-4 border-turquesaMaya header-main-wrapper">
+    <div class="header-wrapper">
+        <span class="custom-title primary-color">Listado de cerámicas</span>
+        <div class="flex items-center filters-wrapper">
+            <te-filters class="mr-3 w-full"></te-filters>
+            <i class="material-icons mr-2 cpointer primary-color viewMode" (click)="setViewMode()" [appTooltip]="viewMode == 'list' ? 'Ver en modo grid' : 'Ver en modo listado'">{{ viewMode == 'list' ? 'grid_view' : 'format_list_bulleted' }}</i>
+        </div>
+    </div>
+</div>

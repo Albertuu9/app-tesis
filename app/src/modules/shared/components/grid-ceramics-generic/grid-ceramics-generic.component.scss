@@ -1,0 +1,68 @@
+.ceramic-card-wrapper {
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #999;
+    display: flex;
+    height: 320px;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    position: relative;
+    width: 20%;
+    .img-wrapper {
+        background-position: center;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 40%;
+        width: 100%;
+    }
+    .data-wrapper {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+    .tags-wrapper {
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        width: 90%;
+    }
+    .actions-wrapper {
+        align-items: center;
+        bottom: 10px;
+        display: flex;
+        justify-content: center;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%);
+    }
+}
+
+.ceramic-card-wrapper:hover {
+    box-shadow: 0px 0px 5px 5px #999;
+    cursor: pointer;
+    transition: ease .2s;
+}
+
+// portátil
+@media only screen and (max-width: 1380px) {
+    .ceramic-card-wrapper {
+        width: 30%;
+    }
+}
+
+// tablets
+@media only screen and (max-width: 900px) {
+    .ceramic-card-wrapper {
+        width: 45%;
+    }
+}
+
+// moviles
+@media only screen and (max-width: 600px) {
+    .ceramic-card-wrapper {
+        width: 90%;
+    }
+}

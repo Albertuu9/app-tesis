@@ -1,0 +1,30 @@
+
+.content-wrapper {
+    height: 80dvh;
+    margin: 0 auto;
+    width: 90%;
+}
+
+// portátil
+@media only screen and (max-width: 1380px) {
+    .content-wrapper {
+        height: calc(100dvh - 160px);
+        width: 100%;
+    }
+}
+
+// tablets
+@media only screen and (max-width: 900px) {
+    .content-wrapper {
+        height: calc(100dvh - 160px);
+        width: 100%;
+    }
+}
+
+// moviles
+@media only screen and (max-width: 600px) {
+    .content-wrapper {
+        height: calc(100dvh - 160px);
+        width: 100%;
+    }
+}

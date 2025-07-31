@@ -1,0 +1,18 @@
+<div class="ceramic-card-wrapper" *ngFor="let ceramic of ceramics">
+    <div class="img-wrapper" [style.background-image]="'url(' + ceramic.ce_img_schedule + ')'"></div>
+    <div class="data-wrapper">
+        <b class="primary-color text-xl">{{ ceramic.ce_title }}</b> 
+        <span class="mx-1 text-3xl secondary-color">&middot;</span>
+        <small class="secondary-color">{{ ceramic.ce_material.text }}</small>
+    </div>
+    <div class="tags-wrapper">
+        <div *ngIf="ceramic.ce_musical_instruments.length" class="flex flex-wrap justify-center">
+            <div *ngFor="let mi of ceramic.ce_musical_instruments" class="bg-gray-100 rounded-xl text-sm h-6 mr-2 my-1 shadow flex items-center justify-center px-2 primary-color">
+                <span>{{ mi }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="actions-wrapper">
+        <button class="action-btn text-sm">Ver detalles</button>
+    </div>
+</div>

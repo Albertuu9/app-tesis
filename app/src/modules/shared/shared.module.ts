@@ -5,14 +5,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './services/database.service';
 import { TooltipDirective } from 'src/app/tooltip.directive';
+import { ListCeramicsGenericComponent } from './components/list-ceramics-generic/list-ceramics-generic.component';
 import { GenericSnackbarComponent } from './components/snackbar/generic-snackbar.component';
 import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
+import { GridCeramicsGenericComponent } from './components/grid-ceramics-generic/grid-ceramics-generic.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ShowHideDirective } from './directives/show-hide.directive';
 
 @NgModule({
   declarations: [
     TooltipDirective,
     GenericSnackbarComponent,
-    GenericModalComponent
+    GenericModalComponent,
+    ListCeramicsGenericComponent,
+    GridCeramicsGenericComponent,
+    SpinnerComponent,
+    ShowHideDirective
   ],
   imports: [CommonModule],
   exports: [
@@ -22,7 +30,11 @@ import { GenericModalComponent } from './components/generic-modal/generic-modal.
     HttpClientModule,
     TooltipDirective,
     GenericSnackbarComponent,
-    GenericModalComponent
+    GenericModalComponent,
+    ListCeramicsGenericComponent,
+    GridCeramicsGenericComponent,
+    SpinnerComponent,
+    ShowHideDirective
   ],
   providers: [DatabaseService]
 })

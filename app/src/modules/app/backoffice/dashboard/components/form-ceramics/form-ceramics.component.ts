@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { Ceramic } from '../../models/dashboard.model';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { Ceramic } from 'src/modules/shared/models/ceramic.model';
 
 @Component({
   selector: 'te-form-ceramics',
@@ -9,6 +9,8 @@ import { Form, NgForm } from '@angular/forms';
 })
 export class FormCeramicsComponent {
 
+    @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+    
     @Input() ceramic!: Ceramic | any;
     @Output() getCeramicData = new EventEmitter<Object>();
     iconographic_element: string;
@@ -48,6 +50,12 @@ export class FormCeramicsComponent {
         this.selectedFile = event.target.files[0];
         this.fileName = this.selectedFile?.name;
     }
+
+    triggerFileInput() {
+        if (this.fileInput) {
+          this.fileInput.nativeElement.click();
+        }
+      }
 
 
     // add/delete chips functions

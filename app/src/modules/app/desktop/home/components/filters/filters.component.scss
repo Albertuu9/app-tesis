@@ -1,0 +1,14 @@
+.filters-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title-input {
+        width: 33.33%;
+        position: relative;
+        .float-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+// ===================================
+// Palette – Cerámica & Diseño Natural
+// ===================================
+
+// Neutros y fondo
+$color-bg: #fdfaf6;
+$color-white: #ffffff;
+$color-light-gray: #e5e5e5;
+$color-gray: #aaaaaa;
+$color-dark-gray: #3a3a3a;
+$color-black: #1a1a1a;
+
+$color-tourquoise: #00A6A6;  
+
+// Colores de acción
+$primary-color: $color-tourquoise;
+$secondary-color: $color-gray;
+
+$success-color: #70af85;
+$warning-color: #f0ad4e;
+$error-color: #d9534f;
+$info-color: #5bc0de;
+
+// ======================
+// Tipografía
+// ======================
+$font-primary: 'Inter', sans-serif;
+$font-heading: 'Playfair Display', serif;
+
+// ======================
+// Ejemplo de uso
+// ======================
+
+body {
+  background-color: $color-bg;
+  color: $color-dark-gray;
+  font-family: $font-primary;
+}

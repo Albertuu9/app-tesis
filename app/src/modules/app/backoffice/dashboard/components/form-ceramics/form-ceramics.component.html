@@ -1,9 +1,9 @@
 <div class="bg-white shadow-lg rounded-lg p-6 w-full h-[90vh] overflow-y-auto border-4 border-turquesaMaya">
-    <span class="text-xl font-bold text-azulProfundo flex justify-center text-center mb-4">{{ ceramic && ceramic.ce_title ? 'Editar cerámica' :  'Añadir cerámica'}}</span>
+    <span class="custom-title primary-color flex justify-center text-center mb-4">{{ ceramic && ceramic.ce_title ? 'Editar cerámica' :  'Añadir cerámica'}}</span>
     <form #form="ngForm" (ngSubmit)="saveCeramics(form)" (keydown.enter)="$event.preventDefault()">
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Título*</label>
-        <input  required type="text" placeholder="Ej. K1208" [(ngModel)]="ceramic.ce_title" name="title" class="form-control w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" #title="ngModel" [ngClass]="{'is-invalid': title.invalid && title.touched}">
+        <input  required type="text" placeholder="Ej. K1208" [(ngModel)]="ceramic.ce_title" name="title" class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" #title="ngModel" [ngClass]="{'is-invalid': title.invalid && title.touched}">
         <div *ngIf="title.invalid && title.touched" class="invalid-feedback">
           El nombre es obligatorio.
         </div>
@@ -11,8 +11,8 @@
 
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Descripción*</label>
-        <textarea rows="5" required placeholder="Descripción del instrumento..." [(ngModel)]="ceramic.ce_description"
-                  class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" name="description" #description="ngModel" [ngClass]="{'is-invalid': description.invalid && description.touched}"></textarea>
+        <textarea rows="5" required placeholder="Descripción de la cerámica..." [(ngModel)]="ceramic.ce_description"
+                  class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" name="description" #description="ngModel" [ngClass]="{'is-invalid': description.invalid && description.touched}"></textarea>
         <div *ngIf="description.invalid && description.touched" class="invalid-feedback">
           La descripción es obligatoria.
         </div>
@@ -22,17 +22,15 @@
         <label class="block text-jade font-medium mb-1">Subir Imagen*</label>
         
         
-        <div class="w-full border border-turquesaMaya rounded-lg px-2 py-2 flex items-center bg-white bg-opacity-80 justify-between">
-         
-           
+        <div class="w-full border rounded-lg px-2 py-2 flex items-center bg-white bg-opacity-80 justify-between">
+        
           <span *ngIf="!fileName" class="text-gray-600 ellipsis">Ningún archivo seleccionado</span>
           <span *ngIf="fileName" class="text-gray-600 ellipsis" [appTooltip]="fileName">{{ fileName }}</span>
           
-          <label for="imageUpload" 
-                 class="cursor-pointer bg-turquesaMaya text-white px-2 py-2 rounded-lg shadow-lg hover:bg-azulProfundo transition inline-block">
+          <button type="button" (click)="triggerFileInput()" class="action-btn">
             Seleccionar
-          </label>
-          <input required type="file" accept="image/*" id="imageUpload" name="image" class="hidden" (change)="onFileSelected($event)">
+          </button>
+          <input required type="file" accept="image/*" id="imageUpload" #fileInput name="image" class="hidden" (change)="onFileSelected($event)">
         </div>
         
       
@@ -40,14 +38,14 @@
 
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Procedencia</label>
-        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onOriginChange($event)" [(ngModel)]="ceramic.ce_origin.id" name="origin">
+        <select class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onOriginChange($event)" [(ngModel)]="ceramic.ce_origin.id" name="origin">
           <option *ngFor="let origin of origins" [value]="origin.id">{{ origin.text }}</option>
         </select>
       </div>
 
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Técnica</label>
-        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onTechniqueChange($event)" [(ngModel)]="ceramic.ce_technique.id" name="technique">
+        <select class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onTechniqueChange($event)" [(ngModel)]="ceramic.ce_technique.id" name="technique">
           <option *ngFor="let technique of techniques" [value]="technique.id">{{ technique.text }}</option>
         </select>
       </div>
@@ -65,12 +63,12 @@
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Elaboración</label>
         <input type="text" placeholder="Ej. 800 a.c" [(ngModel)]="ceramic.ce_creation_date" name="creation"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+               class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
       </div>
 
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Materiales*</label>
-        <select class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onMaterialChange($event)" [(ngModel)]="ceramic.ce_material.id" name="material">
+        <select class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (change)="onMaterialChange($event)" [(ngModel)]="ceramic.ce_material.id" name="material">
           <option *ngFor="let material of materials" [value]="material.id">{{ material.text }}</option>
         </select>
       </div>
@@ -78,41 +76,41 @@
         <div class="mb-4 mr-2">
           <label class="block text-jade font-medium mb-1">Altura</label>
           <input type="number" min="0" placeholder="Ej. 20.5" [(ngModel)]="ceramic.ce_measures.height" name="height"
-                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+                 class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
         </div>
 
         <div class="mb-4 mr-2">
           <label class="block text-jade font-medium mb-1">Diametro</label>
           <input type="number" min="0" placeholder="Ej. 11.5" [(ngModel)]="ceramic.ce_measures.diameter" name="diameter"
-                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+                 class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
         </div>
 
         <div class="mb-4">
           <label class="block text-jade font-medium mb-1">Circumferencia</label>
           <input type="number" min="0" placeholder="Ej. 1" [(ngModel)]="ceramic.ce_measures.circumference" name="circumference"
-                 class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+                 class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
         </div>
       </div>
       
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Estilo</label>
         <input type="text" placeholder="Ej. Princeton" [(ngModel)]="ceramic.ce_style" name="style"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+               class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
       </div>
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Localización</label>
         <input type="text" placeholder="Ej. Princeton Art Museum Princeton NJ PUAM# y1975-17" [(ngModel)]="ceramic.ce_property" name="property"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
+               class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none">
       </div>
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Elementos iconográficos*</label>
         <input type="text" placeholder="Ej. Diosa O" [(ngModel)]="iconographic_element" name="iconographic" #iconographic="ngModel"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_iconographic_elements')" [ngClass]="{'is-invalid': !ceramic.ce_iconographic_elements.length && iconographic.touched}">
+               class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_iconographic_elements')" [ngClass]="{'is-invalid': !ceramic.ce_iconographic_elements.length && iconographic.touched}">
         <div *ngIf="!ceramic.ce_iconographic_elements.length && iconographic.touched" class="invalid-feedback">
           Añade almenos un elemento iconográfico.
         </div>
         <div *ngIf="ceramic.ce_iconographic_elements.length" class="flex w-full flex-wrap">
-          <div *ngFor="let ico of ceramic.ce_iconographic_elements" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl text-turquesaMaya h-6 mr-1 shadow flex items-center justify-center px-2">
+          <div *ngFor="let ico of ceramic.ce_iconographic_elements" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl primary-color h-6 mr-1 shadow flex items-center justify-center px-2">
             <span>{{ ico }}</span>
             <mat-icon (click)="deleteTag(ico, 'ce_iconographic_elements')" class="text-base cursor-pointer">close</mat-icon>
           </div>
@@ -121,22 +119,22 @@
       <div class="mb-4">
         <label class="block text-jade font-medium mb-1">Instrumentos musicales*</label>
         <input type="text" placeholder="Ej. Caracola" [(ngModel)]="musical_instrument" name="musical_ins" #musical_ins="ngModel"
-               class="w-full border border-turquesaMaya rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_musical_instruments')" [ngClass]="{'is-invalid': !ceramic.ce_musical_instruments.length && musical_ins.touched}">
+               class="w-full border rounded-lg px-2 py-2 focus:ring-2 focus:ring-azulCielo focus:outline-none" (keyup.enter)="saveChips('ce_musical_instruments')" [ngClass]="{'is-invalid': !ceramic.ce_musical_instruments.length && musical_ins.touched}">
       <div *ngIf="!ceramic.ce_musical_instruments.length && musical_ins.touched" class="invalid-feedback">
         Añade almenos un instrumento musical.
       </div>
       <div *ngIf="ceramic.ce_musical_instruments.length" class="flex w-full flex-wrap">
-          <div *ngFor="let mi of ceramic.ce_musical_instruments" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl text-turquesaMaya h-6 mr-1 shadow flex items-center justify-center px-2">
+          <div *ngFor="let mi of ceramic.ce_musical_instruments" class="mt-2 bg-gray-100 text-center w-auto w-2/12 rounded-xl primary-color h-6 mr-1 shadow flex items-center justify-center px-2">
             <span>{{ mi }}</span>
             <mat-icon (click)="deleteTag(mi, 'ce_musical_instruments')" class="text-base cursor-pointer">close</mat-icon>
           </div>
       </div>
       </div>
       <div class="flex justify-end mt-4">
-        <button type="submit" class="bg-turquesaMaya text-white mx-3 px-2 py-2 rounded-lg shadow-lg hover:bg-azulProfundo transition disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="checkFormIsValid(ceramic)">
+        <button type="submit" class="action-btn disabled:opacity-50 disabled:cursor-not-allowed mr-2" [disabled]="checkFormIsValid(ceramic)">
           Guardar
         </button>
-        <button type="button" class="bg-gray-400 text-white px-2 py-2 rounded-lg shadow-lg hover:bg-gray-600 transition" (click)="clearFields(form)">
+        <button type="button" class="btn btn-secondary" (click)="clearFields(form)">
           Limpiar
         </button>
       </div>

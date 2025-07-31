@@ -1,8 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "template";
+
+body { 
+  margin: 0; 
+  height: 100%; 
+  font-family: 'Times New Roman', Times, serif !important; 
+  font-size: 17px !important;
+}
 .cpointer {
   cursor: pointer;
 }
@@ -11,6 +18,57 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+// textos
+.custom-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.primary-color {
+  color: $primary-color;
+}
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+.error-color {
+  color: $error-color;
+}
+
+// campos del formulario
+input.form-control {
+  border-color: $primary-color !important;
+}
+
+// botones
+button {
+  border-radius: 5px !important;
+  color: #fefefe;
+  padding: 10px;
+}
+
+.action-btn {
+  background-color: $primary-color;
+  
+}
+
+.action-btn:hover {
+  background-color: #005F73;
+}
+
+.secondary-btn {
+  background-color: $secondary-color;
+}
+
+.secondary-btn:hover {
+  background-color: #dcdcdc;
+}
+
+.error-btn {
+  background-color: $error-color;
 }
 
 
